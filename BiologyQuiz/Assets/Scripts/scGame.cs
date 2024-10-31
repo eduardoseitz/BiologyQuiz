@@ -14,10 +14,10 @@ public class scGame : MonoBehaviour {
 	public Sprite spriDefault;
 
 	[Header("Sound Elements")]
-	public AudioSource sourEffect;
-	public AudioClip clipRight;
-	public AudioClip clipWrong;
-	public AudioClip clipFinish;
+	public AudioSource rightSource;
+	public AudioSource wrongSource;
+	public AudioSource finishSource;
+	public AudioSource clickSource;
 
 	[Header("Graphic Elements")]
 	public Text txtQuestion;
@@ -97,6 +97,7 @@ public class scGame : MonoBehaviour {
 		}else{
 			cvQuiz.SetActive (false);
 			cvResult.SetActive (true);
+			finishSource.Play();
 
 			if (intRight == 0) {
 				txtResult.text = "Péssimo";
@@ -146,6 +147,11 @@ public class scGame : MonoBehaviour {
 
 		if (levels [intLevel].questions [intCurrent-1].right == alt[0]) {
 			intRight++;
+			rightSource.Play();
+		}
+		else
+		{
+			wrongSource.Play();
 		}
 
 		ChangeQuestion (intLevel);

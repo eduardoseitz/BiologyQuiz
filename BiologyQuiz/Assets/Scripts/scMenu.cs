@@ -5,11 +5,10 @@ using UnityEngine.UI;
 public class scMenu : MonoBehaviour {
 
 	//musica
-	public AudioSource sourMusic;
-	public AudioClip audMusic;
 	public Text txtMute;
 	static bool boolMute;
 	public static int intPage;
+	public scGame game;
 
 	//void de update
 	void Update ()
@@ -22,11 +21,18 @@ public class scMenu : MonoBehaviour {
 	//botao mudo
 	public void Mute()
 	{
-		if (boolMute == false) {
-			sourMusic.Stop ();
+		if (boolMute == false)
+		{
+			game.finishSource.volume = 0;
+			game.wrongSource.volume = 0;
+			game.rightSource.volume = 0;
+			game.clickSource.volume = 0;
 			txtMute.color = new Color32(255,0,0,255);
 		} else {
-			sourMusic.Play ();
+			game.finishSource.volume = 0.5f;
+			game.wrongSource.volume = 0.5f;
+			game.rightSource.volume = 0.5f;
+			game.clickSource.volume = 0.5f;
 			txtMute.color = new Color32(255,255,255,255);
 		}
 		boolMute = !boolMute;
